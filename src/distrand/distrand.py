@@ -1,20 +1,5 @@
-# distrand.py
-
-# Copyright 2025 Syed Mohammad Talha Husain
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 import numpy as np
+import random
 
 def distrand(low, high, size, min_dist, dtype):
     """
@@ -50,19 +35,33 @@ def distrand(low, high, size, min_dist, dtype):
     )
 
     if use_int_mode:
-        pool = np.arange(low, high + min_dist, min_dist, dtype=int)
+        # Integer mode: sample freely with spacing checks
+        if (high - low + 1) < (size - 1) * min_dist + 1:
+            raise ValueError(
+                f"Cannot select {size} values from range [{low}, {high}] with min_dist={min_dist}"
+            )
+
+        selected = []
+        attempts = 0
+        max_attempts = 10000
+
+        while len(selected) < size and attempts < max_attempts:
+            candidate = random.randint(low, high)
+            if all(abs(candidate - x) >= min_dist for x in selected):
+                selected.append(candidate)
+            attempts += 1
+
+        if len(selected) < size:
+            raise RuntimeError("Failed to generate enough spaced integers after many attempts.")
+
+        return np.array(selected, dtype=int)
+
     else:
         pool = np.arange(float(low), float(high), float(min_dist))
+        if len(pool) < size:
+            raise ValueError(
+                f"Cannot select {size} values from range [{low}, {high}] with min_dist={min_dist}"
+            )
 
-    if len(pool) < size:
-        raise ValueError(
-            f"Cannot select {size} values from range [{low}, {high}] with min_dist={min_dist}"
-        )
-
-    selected = np.random.choice(pool, size=size, replace=False)
-
-    # Avoid unnecessary conversion
-    if selected.dtype != np.dtype(dtype):
-        selected = selected.astype(dtype)
-
-    return selected
+        selected = np.random.choice(pool, size=size, replace=False)
+        return selected.astype(dtype)

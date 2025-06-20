@@ -31,3 +31,11 @@ def test_negative_distance_error():
 def test_dtype_casting():
     values = distrand(low=0, high=20, size=3, min_dist=5, dtype=float)
     assert values.dtype == np.float64
+    
+def test_int_mode_spacing_not_grid_aligned():
+    from distrand import distrand
+    nums = distrand(100, 200, size=6, min_dist=7, dtype=int)
+    assert len(nums) == 6
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            assert abs(nums[i] - nums[j]) >= 7
