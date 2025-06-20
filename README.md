@@ -1,6 +1,8 @@
 # distrand
 
 > 🎲 Generate random numbers with spacing constraints — no collisions, no clutter.
+[![PyPI version](https://img.shields.io/pypi/v/distrand.svg)](https://pypi.org/project/distrand/)
+[![License](https://img.shields.io/pypi/l/distrand.svg)](https://github.com/Eggman5800/distrand/blob/main/LICENSE)
 
 ## 📦 What is this?
 
@@ -22,7 +24,12 @@ Perfect for:
 
 ## 🚀 Installation
 
-> Python 3.7+ and NumPy are required.
+From [PyPI](https://pypi.org/project/distrand/):
+```bash
+pip install distrand
+```
+
+From source (for development):
 
 ```bash
 git clone https://github.com/Eggman5800/distrand.git
@@ -99,8 +106,8 @@ Feedback, issues, and pull requests welcome!
 
 ## 🌠 Roadmap
 
-- [ ] Publish to PyPI
-- [ ] Add optional seed parameter
+- [x] Publish to PyPI
+- [ ] Add optional seed parameter (for reproducible results)
 - [ ] Support output sorting (`sort=True`)
 - [ ] Vectorized float optimization
 
