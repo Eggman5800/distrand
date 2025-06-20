@@ -2,7 +2,8 @@
 
 🎲 Generate random numbers with spacing constraints — no collisions, no clutter.
 
-[![PyPI version](https://img.shields.io/pypi/v/distrand.svg)](https://pypi.org/project/distrand/)
+[![PyPI version](https://img.shields.io/pypi/v/distrand.svg?color=brightgreen)](https://pypi.org/project/distrand/)
+[![Python versions](https://img.shields.io/pypi/pyversions/distrand.svg)](https://pypi.org/project/distrand/)
 [![License](https://img.shields.io/pypi/l/distrand.svg)](https://github.com/Eggman5800/distrand/blob/main/LICENSE)
 
 ## 📦 What is this?
