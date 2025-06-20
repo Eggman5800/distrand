@@ -49,7 +49,7 @@ floats = distrand(low=0.0, high=5.0, size=4, min_dist=1.2, dtype=float)
 Run the tests using `pytest`:
 
 ```bash
-pytest
+pytest test_distrand.py
 ```
 
 Tests cover:

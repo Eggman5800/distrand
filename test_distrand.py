@@ -1,4 +1,4 @@
-# tests/test_distrand.py
+# test_distrand.py
 
 import numpy as np
 import pytest
