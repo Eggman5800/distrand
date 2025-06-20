@@ -22,6 +22,8 @@ Perfect for:
 
 ## 🚀 Installation
 
+> Python 3.7+ and NumPy are required.
+
 ```bash
 git clone https://github.com/Eggman5800/distrand.git
 cd distrand
@@ -48,8 +50,15 @@ floats = distrand(low=0.0, high=5.0, size=4, min_dist=1.2, dtype=float)
 
 Run the tests using `pytest`:
 
-```bash
-pytest test_distrand.py
+```# Run tests (make sure PYTHONPATH is set to 'src')
+
+# Windows (PowerShell)
+$env:PYTHONPATH = "src"
+pytest
+
+# Unix/macOS
+PYTHONPATH=src pytest
+
 ```
 
 Tests cover:
